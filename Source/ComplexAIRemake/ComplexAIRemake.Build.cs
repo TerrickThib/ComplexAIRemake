@@ -15,7 +15,7 @@ public class ComplexAIRemake : ModuleRules
 			"InputCore", 
 			"HeadMountedDisplay",
 			"AIModule",
-			//GameplayTask
+			"GameplayTasks",
 			"NavigationSystem"});
 	}
 }
