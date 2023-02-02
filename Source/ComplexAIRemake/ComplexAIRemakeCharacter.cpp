@@ -8,6 +8,10 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
+#include "GameFramework/PlayerController.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AComplexAIRemakeCharacter
@@ -76,6 +80,19 @@ void AComplexAIRemakeCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AComplexAIRemakeCharacter::OnResetVR);
 }
 
+
+void AComplexAIRemakeCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Sets the material color
+	UMaterialInstanceDynamic* const material_instance = UMaterialInstanceDynamic::Create(GetMesh()->GetMaterial(0), this);
+	if (material_instance)
+	{
+		material_instance->SetVectorParameterValue("BodyColor", FLinearColor(0.0f, 1.0f, 0.0f, 1.0f));
+		GetMesh()->SetMaterial(0, material_instance);
+	}
+}
 
 void AComplexAIRemakeCharacter::OnResetVR()
 {
