@@ -14,6 +14,7 @@
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "GameFramework/Character.h"
+#include "ComplexAIRemakeCharacter.h"
 
 ANPC_AIController::ANPC_AIController(FObjectInitializer const& object_initalizer)
 {
@@ -48,11 +49,6 @@ UBlackboardComponent* ANPC_AIController::get_blackboard() const
 {
 	return blackboard;
 }
-
-void ANPC_AIController::on_updated(TArray<AActor*> const& updated_actor)
-{
-}
-
 
 void ANPC_AIController::on_target_detected(AActor* actor, FAIStimulus const stimulus)
 {

@@ -12,6 +12,8 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "GameFramework/PlayerController.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AComplexAIRemakeCharacter
@@ -49,6 +51,8 @@ AComplexAIRemakeCharacter::AComplexAIRemakeCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
+	setup_stimulus();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -78,6 +82,14 @@ void AComplexAIRemakeCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AComplexAIRemakeCharacter::OnResetVR);
+}
+
+//Creates the stimuli on the charater
+void AComplexAIRemakeCharacter::setup_stimulus()
+{
+	stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("stimulus"));
+	stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
+	stimulus->RegisterWithPerceptionSystem();
 }
 
 
