@@ -74,6 +74,6 @@ public:
 private:
 	class UAIPerceptionStimuliSourceComponent* stimulus;
 
-	void setup_stimulus();
+	void Setup_stimulus();
 };
 

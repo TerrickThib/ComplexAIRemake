@@ -17,7 +17,7 @@ public:
 	ANPC_AIController(FObjectInitializer const& object_initalizer = FObjectInitializer::Get());
 	void BeginPlay() override;
 	void OnPossess(APawn* const pawn) override;
-	class UBlackboardComponent* get_blackboard() const;
+	class UBlackboardComponent* Get_blackboard() const;
 
 private:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
@@ -32,7 +32,7 @@ private:
 	
 
 	UFUNCTION()
-	void on_target_detected(AActor* actor, FAIStimulus const stimulus);
+	void On_target_detected(AActor* actor, FAIStimulus const stimulus);
 
-	void setup_perception_system();
+	void Setup_perception_system();
 };

@@ -26,7 +26,7 @@ ANPC_AIController::ANPC_AIController(FObjectInitializer const& object_initalizer
 	behavior_tree_component = object_initalizer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("Behavior"));
 	blackboard = object_initalizer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
 
-	setup_perception_system();
+	Setup_perception_system();
 }
 
 void ANPC_AIController::BeginPlay()
@@ -45,20 +45,20 @@ void ANPC_AIController::OnPossess(APawn* const pawn)
 	}
 }
 
-UBlackboardComponent* ANPC_AIController::get_blackboard() const
+UBlackboardComponent* ANPC_AIController::Get_blackboard() const
 {
 	return blackboard;
 }
 
-void ANPC_AIController::on_target_detected(AActor* actor, FAIStimulus const stimulus)
+void ANPC_AIController::On_target_detected(AActor* actor, FAIStimulus const stimulus)
 {
 	if (auto const ch = Cast<AComplexAIRemakeCharacter>(actor))
 	{
-		get_blackboard()->SetValueAsBool(bb_keys::can_see_player, stimulus.WasSuccessfullySensed());
+		Get_blackboard()->SetValueAsBool(bb_keys::can_see_player, stimulus.WasSuccessfullySensed());
 	}
 }
 
-void ANPC_AIController::setup_perception_system()
+void ANPC_AIController::Setup_perception_system()
 {
 	//Create and Initialise sight configuration object 
 	sight_config = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("Sight Config"));
@@ -74,6 +74,6 @@ void ANPC_AIController::setup_perception_system()
 
 	//Add sight configuration component to perception component
 	GetPerceptionComponent()->SetDominantSense(*sight_config->GetSenseImplementation());
-	GetPerceptionComponent()->OnTargetPerceptionUpdated.AddDynamic(this, &ANPC_AIController::on_target_detected);
+	GetPerceptionComponent()->OnTargetPerceptionUpdated.AddDynamic(this, &ANPC_AIController::On_target_detected);
 	GetPerceptionComponent()->ConfigureSense(*sight_config);
 }

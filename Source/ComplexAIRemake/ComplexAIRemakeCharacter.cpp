@@ -52,7 +52,7 @@ AComplexAIRemakeCharacter::AComplexAIRemakeCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 
-	setup_stimulus();
+	Setup_stimulus();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,7 @@ void AComplexAIRemakeCharacter::SetupPlayerInputComponent(class UInputComponent*
 }
 
 //Creates the stimuli on the charater
-void AComplexAIRemakeCharacter::setup_stimulus()
+void AComplexAIRemakeCharacter::Setup_stimulus()
 {
 	stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("stimulus"));
 	stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
