@@ -4,11 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+#include <Perception/AIPerceptionTypes.h>
 #include "NPC_AIController.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class COMPLEXAIREMAKE_API ANPC_AIController : public AAIController
 {
@@ -30,6 +29,7 @@ private:
 	class UBlackboardComponent* blackboard;
 
 	class UAISenseConfig_Sight* sight_config;
+	
 
 	UFUNCTION()
 	void on_target_detected(AActor* actor, FAIStimulus const stimulus);
