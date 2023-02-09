@@ -25,6 +25,11 @@ EBTNodeResult::Type UGunFire::ExecuteTask(UBehaviorTreeComponent& owner_comp, ui
 	AAIController* const cont = owner_comp.GetAIOwner();
 	ANPC* const npc = Cast<ANPC>(cont->GetPawn());
 
+	//Makes it so projectile can be spawned
+	AProjectile* projectile = GetWorld()->SpawnActor<AProjectile>();
+	projectile->SetActorLocation(npc->GetActorLocation());
+	
+
 	FinishLatentTask(owner_comp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;
 }

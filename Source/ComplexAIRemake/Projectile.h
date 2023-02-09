@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include <Components/BoxComponent.h>
+#include <GameFramework/ProjectileMovementComponent.h>
 #include "Projectile.generated.h"
 
 UCLASS()
@@ -14,6 +16,13 @@ class COMPLEXAIREMAKE_API AProjectile : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AProjectile();
+	float speed;
+	UStaticMeshComponent* mesh;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UBoxComponent* CollisionBox;
+	
+	UProjectileMovementComponent* movement;
 
 
 protected:
@@ -21,8 +30,5 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		TSubclassOf<AActor> ActorToSpawn;
 
 };
