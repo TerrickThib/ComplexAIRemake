@@ -3,10 +3,15 @@
 
 #include "GunFire.h"
 #include "NPC_AIController.h"
+#include "NPC.h"
 #include <Kismet/KismetSystemLibrary.h>
 #include <Runtime/Engine/Classes/Engine/World.h>
 #include <Engine/LatentActionManager.h>
+#include <Runtime/Engine/Classes/Kismet/GameplayStatics.h>
+#include <GameFramework/Character.h>	
 #include "Components/SkeletalMeshComponent.h"
+#include "Projectile.h"
+
 
 
 UGunFire::UGunFire(FObjectInitializer const& object_initializer)
@@ -20,12 +25,7 @@ EBTNodeResult::Type UGunFire::ExecuteTask(UBehaviorTreeComponent& owner_comp, ui
 	AAIController* const cont = owner_comp.GetAIOwner();
 	ANPC* const npc = Cast<ANPC>(cont->GetPawn());
 
-	
 	FinishLatentTask(owner_comp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;
 }
 
-bool UGunFire::fireing_has_finished(ANPC* const npc)
-{
-	return false;
-}

@@ -20,7 +20,8 @@ public:
 
 	EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& owner_comp, uint8* node_memory) override;
 
+
 private:
-	bool fireing_has_finished(ANPC* const npc);
+
 
 };
