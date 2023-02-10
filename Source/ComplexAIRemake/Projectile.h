@@ -17,17 +17,22 @@ public:
 	// Sets default values for this actor's properties
 	AProjectile();
 	float speed;
+	AActor* target;
 	UStaticMeshComponent* mesh;
 
+	//Addes Box Collsion 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UBoxComponent* CollisionBox;
-	
+	FVector Force;
+
 	UProjectileMovementComponent* movement;
 
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaTime) override;
 
 private:
 
