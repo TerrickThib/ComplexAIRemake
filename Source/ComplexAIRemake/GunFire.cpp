@@ -27,7 +27,10 @@ EBTNodeResult::Type UGunFire::ExecuteTask(UBehaviorTreeComponent& owner_comp, ui
 
 	//Makes it so projectile can be spawned
 	AProjectile* projectile = GetWorld()->SpawnActor<AProjectile>();
+	//Changes Rotation
+	/*projectile->SetActorRotation({ 90.0f,90.0f,90.0f });*/
 	projectile->SetActorLocation(npc->GetActorLocation());
+	
 	
 
 	FinishLatentTask(owner_comp, EBTNodeResult::Succeeded);

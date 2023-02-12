@@ -16,14 +16,12 @@ class COMPLEXAIREMAKE_API AProjectile : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AProjectile();
-	float speed;
 	AActor* target;
 	UStaticMeshComponent* mesh;
 
 	//Addes Box Collsion 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UBoxComponent* CollisionBox;
-	FVector Force;
 
 	UProjectileMovementComponent* movement;
 
