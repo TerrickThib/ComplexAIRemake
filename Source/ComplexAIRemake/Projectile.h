@@ -24,6 +24,10 @@ public:
 	class UBoxComponent* CollisionBox;
 
 	UProjectileMovementComponent* movement;
+	float getSpeed() { return m_speed; }
+	void setSped(float speed) { m_speed = speed; }
+	FVector getMoveDirection() { return m_moveDirection; }
+	void setMoveDirection(FVector direction) { m_moveDirection = direction; }
 
 
 protected:
@@ -33,5 +37,7 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-
+	float m_speed = 20000.0f;
+	FVector m_moveDirection;
+	FVector m_velocity;
 };

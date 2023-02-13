@@ -20,22 +20,22 @@ AProjectile::AProjectile()
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	
 	//Mesh
-	mesh->SetSimulatePhysics(true);
+	/*mesh->SetSimulatePhysics(true);*/
 	mesh->SetStaticMesh(Asset);
-	mesh->SetRelativeScale3D({ 4.0f, 0.5f, 0.5f });
-	
+	mesh->SetRelativeScale3D({ 2.0f, 0.2f, 0.2f });
+
 	//Ignores Collision with pawn
 	CollisionBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
 	mesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
 
 	//Moves Collision box and mesh
-	movement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Bullet Movement"));
+	/*movement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Bullet Movement"));*/
 	movement->UpdatedComponent = CollisionBox;
 	movement->UpdatedComponent = mesh;
 	movement->InitialSpeed = 3000.0f;
 	movement->MaxSpeed = 3000.0f;
 	movement->bRotationFollowsVelocity = true;
-
+	
 }
 
 // Called when the game starts or when spawned
@@ -47,6 +47,8 @@ void AProjectile::BeginPlay()
 void AProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	/*GetActorLocation() += m_velocity * DeltaTime;*/
+	movement->Velocity = m_moveDirection * movement->InitialSpeed;
 }
 
 

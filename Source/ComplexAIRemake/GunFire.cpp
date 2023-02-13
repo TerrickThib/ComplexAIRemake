@@ -4,6 +4,7 @@
 #include "GunFire.h"
 #include "NPC_AIController.h"
 #include "NPC.h"
+#include "ComplexAIRemakeCharacter.h"
 #include <Kismet/KismetSystemLibrary.h>
 #include <Runtime/Engine/Classes/Engine/World.h>
 #include <Engine/LatentActionManager.h>
@@ -24,11 +25,13 @@ EBTNodeResult::Type UGunFire::ExecuteTask(UBehaviorTreeComponent& owner_comp, ui
 	//Gets the NPC
 	AAIController* const cont = owner_comp.GetAIOwner();
 	ANPC* const npc = Cast<ANPC>(cont->GetPawn());
+	
+	APlayerController* const playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	AComplexAIRemakeCharacter* const player = Cast<AComplexAIRemakeCharacter>(playerController->GetPawn());
 
 	//Makes it so projectile can be spawned
 	AProjectile* projectile = GetWorld()->SpawnActor<AProjectile>();
-	//Changes Rotation
-	/*projectile->SetActorRotation({ 90.0f,90.0f,90.0f });*/
+	projectile->setMoveDirection(npc->GetActorForwardVector());
 	projectile->SetActorLocation(npc->GetActorLocation());
 	
 	
